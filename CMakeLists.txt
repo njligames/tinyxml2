@@ -66,6 +66,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG")
 
 option(BUILD_SHARED_LIBS "build as shared library" ON)
 option(BUILD_STATIC_LIBS "build as static library" OFF)
+option(XML_BUILD_XMLTEST "build the test" ON)
 
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
@@ -106,6 +107,7 @@ install(TARGETS tinyxml2_static
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 endif()
 
+if(XML_BUILD_XMLTEST)
 add_executable(xmltest xmltest.cpp)
 if(BUILD_SHARED_LIBS)
    add_dependencies(xmltest tinyxml2)
@@ -117,6 +119,7 @@ else(BUILD_STATIC_LIBS)
    target_link_libraries(xmltest tinyxml2_static)
 endif()
 install(TARGETS DESTINATION ${CMAKE_INSTALL_BINDIR})
+endif()
 
 install(FILES tinyxml2.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
