@@ -16,3 +16,5 @@ tinyxml2/temp/
 *.o
 *.vc.db
 *.vc.opendb
+*.DS_Store
+
